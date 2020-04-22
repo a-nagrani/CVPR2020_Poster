@@ -1,0 +1,50 @@
+
+\centering 
+\footnotesize{
+\begin{tabular}{c c c c c c c c c c c c c c c c} 
+\toprule
+\multicolumn{1}{c}{\textbf{Data}}&
+\multicolumn{14}{c}{\textbf{Per-Class AP}}  \\
+% pre-training &
+                              & drive & phone & kiss & dance & eat & drink & run & point & open & hit & shoot & push & hug & enter \\ 
+\midrule
+AVA \tiny{(fully supervised)} & 0.63  & 0.54  & 0.22 & 0.46  &0.67 & 0.27  & 0.66 & 0.02 & 0.49 & 0.62 & 0.08 & 0.09 & 0.29 &0.14 \\
+\midrule
+ \texttt{S2A-mined} \tiny{(zero-shot)} & \cellcolor{mistyrose}{0.83} & \cellcolor{mistyrose}{0.79} & 0.13 & \cellcolor{mistyrose}{0.55} & \cellcolor{mistyrose}{0.68} & \cellcolor{mistyrose}{0.30} & 0.63 &  \cellcolor{mistyrose}{0.04}& \cellcolor{mistyrose}{0.52} & 0.54 & \cellcolor{mistyrose}{0.18} & 0.04 & 0.07 & 0.04\\
+\midrule
+\texttt{S2A-mined} + AVA & \textbf{0.86} & \textbf{0.89} & \textbf{0.34} & \textbf{0.58} & \textbf{0.78} & \textbf{0.42} & \textbf{0.75} & 0.03 & \textbf{0.65} & \textbf{0.72} & \textbf{0.26} & \textbf{0.13} & \textbf{0.36} & \textbf{0.16}\\
+% \midrule
+% \texttt{S2A-mined } & AVA fewshot-10 & &  & &  & &  & & & &\\
+% \texttt{S2A-mined } & AVA fewshot-50 & & & & & & & & & &\\
+% \texttt{S2A-mined } & AVA fewshot-100 & & & & & & & & & &\\
+% \texttt{S2A-mined } & AVA (all)       & & & & & & & & & &\\
+ \bottomrule
+\end{tabular}
+}
+\caption{{\textbf{Per-class average precision for $14$ AVA mid and tail classes.} These actions occur \textit{rarely}, and hence are harder to get manual supervision for. For 8 of the 14 classes, we exceed fully supervised performance without a single manually labelled training example. }}
+
+
+
+% \begin{table*}[ht]
+% \centering 
+% \begin{tabular}{c c c c c c c c c c c c} 
+% \toprule
+% \multicolumn{2}{c}{\textbf{Data}}&
+% \multicolumn{7}{c}{\textbf{Per-Class AP}}  \\
+% pre-training & training &
+% drive &
+% phone &
+% kiss &
+% dance &
+% eat &
+% drink & run & point & open & hit\\ 
+% \midrule
+% \texttt{S2A-mined } & AVA fewshot-20 & 0.82 & 0.80 & 0.10 & 0.55 & 0.67 & 0.33 &  0.64& 0.04& 0.51 & 0.59\\
+% \texttt{S2A-mined } & AVA fewshot-50 & 0.82 & 0.86 & 0.30 & 0.56 & 0.69 & 0.37 & 0.69& 0.05& 0.52 & 0.65\\
+% \texttt{S2A-mined } & AVA fewshot-100 & & & & & & & & & &\\
+% \texttt{S2A-mined } & AVA (all)       & & & & & & & & & &\\
+
+
+% \bottomrule
+% \end{tabular}
+% \caption{Per-class average precision for $10$ AVA mid and tail classes using few-shot learning.}
