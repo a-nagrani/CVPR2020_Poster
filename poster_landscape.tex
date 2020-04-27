@@ -89,7 +89,7 @@
  {\sc\huge\bf \textit{Speech2Action:} Cross-modal Supervision for Action Recognition}
  % Authors
  {Arsha Nagrani$^{1,2}$~~~~Chen Sun$^2$~~~~David Ross$^2$ ~~~~Rahul Sukthankar$^2$~~~~Cordelia Schmid$^{2}$ ~~~~Andrew Zisserman$^{1,3}$ \\[0.2em]
- \small{\url{https://www.robots.ox.ac.uk/~vgg/research/speech2action/}}\\[0.2em]
+
 $^1$VGG, Oxford~~~~$^2$Google Research~~~~$^3$DeepMind~~~~  }
  {
   \begin{tabular}{r}
@@ -115,19 +115,17 @@ $^1$VGG, Oxford~~~~$^2$Google Research~~~~$^3$DeepMind~~~~  }
   \begin{center}
    \includegraphics[width=1\textwidth]{images/teaser_6.pdf}
   \end{center}
-    \vspace{-1em}
     \textbf{\color{blue}Motivations:}
     \begin{itemize}
-        \item Manual annotation of human actions is expensive and time consuming 
+        \item Manual annotation of human actions is expensive and not scalable
+        \item Videos accompanied by speech are available in large numbers online.
     \end{itemize}
-
-    \vspace{0.2em}
     \textbf{\color{blue}Key Contributions:}
     \begin{itemize}
 \item A \texttt{Speech2Action} model trained from literary screenplays that predicts actions from transcribed speech \textit{alone}  
 \item By applying this \texttt{Speech2Action} model to a large unlabelled corpus of videos, we obtain obtain weak action labels for over 800K video clips 
 \item Action classifier trained with these weak labels achieves state of the art results on HMDB51 
-\item The action classifier with \textit{no} fine-tuning beats fully supervised performance on AVA~\cite{gu2018ava}
+\item The action classifier with \textit{no} fine-tuning beats fully supervised performance on the AVA dataset. 
     \end{itemize}  
 }
 
@@ -137,7 +135,7 @@ $^1$VGG, Oxford~~~~$^2$Google Research~~~~$^3$DeepMind~~~~  }
 \begin{itemize}
     \item Download 1,080 movie scripts from IMSDb.com spanning 22 genres 
     \item Separate out scene descriptions (which contain mention of \textbf{\textcolor{brightmaroon}{actions}}) and \textbf{\textcolor{bluencs}{speech segments}}. 
-    \item Get a text dataset of speech paired with action labels
+    \item Create a text dataset of \textbf{\textcolor{bluencs}{speech}} paired with \textbf{\textcolor{brightmaroon}{action}} labels, using proximity in the movie scripts as a cue.
 \end{itemize}
         \begin{center}
             Examples of Movie Scripts 
@@ -147,26 +145,7 @@ $^1$VGG, Oxford~~~~$^2$Google Research~~~~$^3$DeepMind~~~~  }
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{\bf\color{blue} Experiments \& Results}{name=results,column=2,row=0,span=2}{
-    \textbf{\color{blue}Mining Clips Automatically:}
-
-    \begin{minipage}{0.75\linewidth}
-        \begin{center}
-        \begin{itemize}
-            \item We apply the Speech2Action model to the subtitles of unlabelled movies and TV shows. 
-            \item We then assign the label for highly confident predictions of the model to the accompanying video clip. 
-            \item In this manner we mined over 800K video clips and assign them with action labels based on the speech alone. 
-        \end{itemize}
-        \end{center}
-    \end{minipage}
-    \begin{minipage}{0.2\linewidth}
-        \begin{center}
-            \begin{tiny}We mine two orders of magnitude more data than AVA automatically
-            \end{tiny}
-     \includegraphics[width=1\linewidth]{images/training_dist.png}
-        \end{center}
-    \end{minipage}
-
+\headerbox{\bf\color{blue} Results on Visual Action Recognition}{name=results,column=2,row=0,span=2}{
     % \input{figures/syn_quant}
 
     \vspace{0.5em}
@@ -182,48 +161,72 @@ $^1$VGG, Oxford~~~~$^2$Google Research~~~~$^3$DeepMind~~~~  }
     \includegraphics[width=0.92\linewidth]{images/mining_unusual.pdf}
     \vspace{-1em}
    \end{center}
-  
     \vspace{0.5em}
+    {\bf\color{blue}Results on 14 AVA mid and tail classes}
+    \vspace{0.2em}
     \input{avatable}
-    }
+    
+\begin{minipage}{0.5\linewidth}
+{\bf\color{blue}Action Recognition Model}
+\begin{itemize}
+    \item We train an S3D-G model for 18-way classification on video clips labelled with the Speech2Action model 
+    \item We evaluate on AVA with NO finetuning, on mid and tail classes. These actions occur \textit{rarely}, and are hard to get manual supervision for. For 8 classes, we exceed fully supervised performance without a single manually labelled training example.
+    \item On HMDB51, we obtain a 17\% improvement over training from scratch and also outperform previous self-supervised and weakly supervised works.
+\end{itemize}
+\end{minipage}   
+\begin{minipage}{0.5\linewidth}
+    \vspace{1em}
+{\bf\color{blue} \quad Results on HMDB51}
+\vspace{-0.3em}
+\begin{flushright}
+\input{hmdb}
+\end{flushright}
+ 
+\end{minipage} 
+}
 \headerbox{\bf\color{blue} Acknowledgments}{name=ack,column=2,below=results,span=2}{
 Arsha is supported by a Google PhD Fellowship. We are grateful to Carl Vondrick for early discussions. 
 
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{\bf\color{blue} Speech2Action Model}{name=abstract,column=0,below=imsdb,span=2}{
-    \textbf{\color{blue}Main idea:} We train a text-based model to predict actions from transcribed speech alone. This model is trained on movie scripts downloaded from IMSDb.  
-  \input{speech_preds}
-  
-%   \begin{minipage}[t]{0.48\linewidth}
-%  \textbf{\color{blue}Loss function for coase stage:}
-%     \vspace{-0.5em}
-%   \begin{align}
-
-%   \end{align}
-%   \begin{itemize}
-%     \vspace{-0.5em}
-
-%   \end{itemize}
-%   \end{minipage}
-%   \hfill
-%   \begin{minipage}[t]{0.48\linewidth}
-%     \textbf{\color{blue}Loss function for refinement stage:}
-%     \vspace{-0.5em}
-%     \begin{align}
-%         \mathcal{L}^r = \alpha^r_{ar} \mathcal{L}^r_{ar} + \alpha^r_{fr} \mathcal{L}^r_{fr} ,
-%     \end{align}
-%   \begin{itemize}
-%     \vspace{-0.5em}
-%       \item $\mathcal{L}^r_{ar}$: Refinement attenuation regression loss (MSE)
-%       \item $\mathcal{L}^r_{fr}$: Refinement refractive flow regression loss (EPE)
-%       \item $\alpha^{r}_{\cdot}$: Weights for the loss terms
-%   \end{itemize}
-%   \end{minipage}
+\headerbox{\bf\color{blue} Mining with the Speech2Action Model}{name=mining,column=0,below=imsdb,span=2}{
+    \textbf{\color{blue}Main idea:} We train a text-based model to predict actions from transcribed speech alone. This model is trained on movie scripts downloaded from IMSDb. This can be applied to the transcribed speech from unlabelled videos to automatically get labels for video clips.
+    
+\begin{minipage}{0.4\linewidth}
+{\bf\color{blue}Speech2Action Model}
+\begin{itemize}
+    \item We obtain speech-action paired data for 18 action classes from the IMSDb data 
+    \item We finetune a BERT model pretrained on English Wikipedia and the BooksCorpus 
+\end{itemize}
+ 
+\end{minipage}
+\begin{minipage}{0.6\linewidth}
+\input{speech_preds}
+\end{minipage}
+\begin{minipage}{0.7\linewidth}
+ \textbf{\color{blue}Mining Clips Automatically:}
+\begin{itemize}
+\item We apply the Speech2Action model to the subtitles of unlabelled movies and TV shows. 
+\item We then assign the label for highly confident predictions of the model to the accompanying video clip. 
+\item In this manner we mined over 800K video clips and assign them with action labels based on the speech alone. 
+\end{itemize}
+ 
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+\begin{center}
+\begin{tiny}We mine two orders of magnitude more data than AVA automatically
+\end{tiny}
+\vspace{-2em}
+\includegraphics[width=0.9\linewidth]{images/training_dist.png}
+\vspace{-0.8em}
+        \end{center}
+\end{minipage}
+}
+\headerbox{\bf\color{blue} Project Page}{name=proj,column=0,below=mining,span=2}{
+More details at:  \small{\url{https://www.robots.ox.ac.uk/~vgg/research/speech2action/}}
 
 }
-
 
 \end{poster}
 \end{document}

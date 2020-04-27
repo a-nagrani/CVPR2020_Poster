@@ -1,0 +1,36 @@
+
+\centering 
+\footnotesize{
+\begin{tabular}{l l l l r}
+\toprule
+Method & Architecture  & Pre-training & Acc. \\
+% Shuffle\&Learn (Misra {\it et al.}~\cite{misra2016shuffle}) & AlexNet~\cite{krizhevsky2012imagenet} & Scratch & 13.3 \\
+% Shuffle\&Learn (Misra {\it et al.}~\cite{misra2016shuffle}) & AlexNet~\cite{krizhevsky2012imagenet} & Tuple verify~\cite{misra2016shuffle} &  18.1 \\
+% Shuffle\&Learn (Misra {\it et al.}~\cite{misra2016shuffle}) & AlexNet~\cite{krizhevsky2012imagenet}  & ImageNet &  28.5 \\
+% Two-stream (RGB)~\cite{simonyan2014two} & VGG-M~\cite{Simonyan_14a} & 1 & ImageNet & - & 40.5 \\
+% C3D~\cite{carreira2017quo} & Custom  & Scratch & 24.3 & - \\
+\arrayrulecolor{GrayLine}
+% \midrule
+% LSTM~\cite{carreira2017quo} & BN-Inception~\cite{ioffe2015batch} & - & ImageNet & 36.0 & - \\
+% Two stream (RGB)~\cite{carreira2017quo} & BN-Inception~\cite{ioffe2015batch} & 1 & ImageNet & 43.2 & - \\
+% I3D (RGB)~\cite{carreira2017quo} & BN-Inception~\cite{ioffe2015batch} & 64 & ImageNet & 49.8 & - \\
+% \midrule
+
+\midrule
+Shuffle\&Learn & S3D-G (RGB) & UCF101& 35.8\\
+OPN   & VGG-M-2048  & UCF101  & 23.8 \\
+ClipOrder  & R(2+1)D  & UCF101   & 30.9 \\
+3DRotNet & S3D-G (RGB)  & Kinetics   &  40.0 \\
+DPC  & 3DResNet18 & Kinetics & 35.7 \\
+CBT  & S3D-G (RGB) & Kinetics   & 44.6 \\
+\midrule 
+DisInit (RGB) 2019 & R(2+1)D-18 & Kinetics$**$  & 54.8 \\  
+Korbar et al. 2018  & I3D (RGB) & Kinetics  & 53.0 \\  
+
+\midrule 
+- & S3D-G (RGB) & Scratch& 41.2 \\ 
+Ours & S3D-G (RGB)  & \texttt{S2A-mined}  & \textbf{58.1} \\
+\bottomrule
+\end{tabular}}
+% \caption{{\textbf{Results on HMDB51}}}
+\label{tab:sota-hmdb}
