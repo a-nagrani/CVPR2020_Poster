@@ -1,4 +1,4 @@
-# LaTex Poster for Speech2Action (CVPR 2020)
+# LaTex Source for Speech2Action (CVPR 2020) Poster
 
 <p align="center">
     <img src='images/sample.png' width="800" > <br>
