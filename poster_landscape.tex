@@ -89,12 +89,13 @@
  {\sc\huge\bf \textit{Speech2Action:} Cross-modal Supervision for Action Recognition}
  % Authors
  {Arsha Nagrani$^{1,2}$~~~~Chen Sun$^2$~~~~David Ross$^2$ ~~~~Rahul Sukthankar$^2$~~~~Cordelia Schmid$^{2}$ ~~~~Andrew Zisserman$^{1,3}$ \\[0.2em]
-
+%  \small{\url{https://www.robots.ox.ac.uk/~vgg/research/speech2action/}} \\[0.2em]
 $^1$VGG, Oxford~~~~$^2$Google Research~~~~$^3$DeepMind~~~~  }
  {
   \begin{tabular}{r}
       %\makebox[0.01\textwidth]{} 
-    \includegraphics[width=0.12\linewidth]{CVPR_logo_2020.png}
+    % \includegraphics[width=0.04\linewidth]{QR_code.png}
+    \includegraphics[width=0.14\linewidth]{CVPR_logo_2020.png}
   \end{tabular}
  }
 
@@ -115,17 +116,17 @@ $^1$VGG, Oxford~~~~$^2$Google Research~~~~$^3$DeepMind~~~~  }
   \begin{center}
    \includegraphics[width=1\textwidth]{images/teaser_6.pdf}
   \end{center}
-    \textbf{\color{blue}Motivations:}
+    \textbf{\color{blue}Motivation:}
     \begin{itemize}
         \item Manual annotation of human actions is expensive and not scalable
-        \item Videos accompanied by speech are available in large numbers online.
+        \item The audiotrack is usually freely available for large video corpuses.
     \end{itemize}
     \textbf{\color{blue}Key Contributions:}
     \begin{itemize}
 \item A \texttt{Speech2Action} model trained from literary screenplays that predicts actions from transcribed speech \textit{alone}  
 \item By applying this \texttt{Speech2Action} model to a large unlabelled corpus of videos, we obtain obtain weak action labels for over 800K video clips 
-\item Action classifier trained with these weak labels achieves state of the art results on HMDB51 
-\item The action classifier with \textit{no} fine-tuning beats fully supervised performance on the AVA dataset. 
+\item An action classifier trained on these clips with \textit{no} fine-tuning beats fully supervised performance on the AVA dataset. 
+\item With finetuning, the classifier achieves state of the art results on HMDB51
     \end{itemize}  
 }
 
@@ -133,7 +134,7 @@ $^1$VGG, Oxford~~~~$^2$Google Research~~~~$^3$DeepMind~~~~  }
 \headerbox{\bf\color{blue} IMSDb Dataset}{name=imsdb,column=1,row=0,span=1}{
 % \input{imsdb}
 \begin{itemize}
-    \item Download 1,080 movie scripts from IMSDb.com spanning 22 genres 
+    \item Download 1,080 movie scripts from \url{www.IMSDb.com} spanning 22 genres 
     \item Separate out scene descriptions (which contain mention of \textbf{\textcolor{brightmaroon}{actions}}) and \textbf{\textcolor{bluencs}{speech segments}}. 
     \item Create a text dataset of \textbf{\textcolor{bluencs}{speech}} paired with \textbf{\textcolor{brightmaroon}{action}} labels, using proximity in the movie scripts as a cue.
 \end{itemize}
@@ -152,13 +153,13 @@ $^1$VGG, Oxford~~~~$^2$Google Research~~~~$^3$DeepMind~~~~  }
     \textbf{\color{blue}Examples of clips mined using Speech2Action:}
     \begin{center}
         \vspace{-0.8em}
-        \includegraphics[width=0.9\linewidth]{images/mining_cropped.pdf}
+        \includegraphics[width=0.94\linewidth]{images/mining_cropped.pdf}
         \vspace{-1em}
     \end{center}
 \textbf{\color{blue}Examples of abstract actions mined using Speech2Action:}
     \begin{center}
      \vspace{-0.8em}
-    \includegraphics[width=0.92\linewidth]{images/mining_unusual.pdf}
+    \includegraphics[width=0.94\linewidth]{images/mining_unusual.pdf}
     \vspace{-1em}
    \end{center}
     \vspace{0.5em}
@@ -190,7 +191,7 @@ Arsha is supported by a Google PhD Fellowship. We are grateful to Carl Vondrick 
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\headerbox{\bf\color{blue} Mining with the Speech2Action Model}{name=mining,column=0,below=imsdb,span=2}{
+\headerbox{\bf\color{blue} Mining with the Speech2Action Model}{name=mining,column=0,below=contribution,span=2}{
     \textbf{\color{blue}Main idea:} We train a text-based model to predict actions from transcribed speech alone. This model is trained on movie scripts downloaded from IMSDb. This can be applied to the transcribed speech from unlabelled videos to automatically get labels for video clips.
     
 \begin{minipage}{0.4\linewidth}
@@ -222,9 +223,15 @@ Arsha is supported by a Google PhD Fellowship. We are grateful to Carl Vondrick 
 \vspace{-0.8em}
         \end{center}
 \end{minipage}
-}
-\headerbox{\bf\color{blue} Project Page}{name=proj,column=0,below=mining,span=2}{
-More details at:  \small{\url{https://www.robots.ox.ac.uk/~vgg/research/speech2action/}}
+
+\vspace{1.8em}
+\begin{minipage}{0.1\linewidth}
+\includegraphics[width=0.9\linewidth]{images/QR_code.png}
+\end{minipage}
+\begin{minipage}{0.8\linewidth}
+More details at:  \small{\url{https://www.robots.ox.ac.uk/~vgg/research/speech2action/}} \\ 
+Contact: \url{arsha@robots.ox.ac.uk}
+\end{minipage}
 
 }
 
